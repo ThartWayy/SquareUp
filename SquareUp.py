@@ -8,13 +8,18 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 pygame.init()
 icon = pygame.image.load('Assets\RedSquare.png')
 pygame.display.set_icon(icon)
-screen = pygame.display.set_mode((800, 700))
+screen = pygame.display.set_mode((800, 700), pygame.RESIZABLE)
 screen.fill("white")
 pygame.display.set_caption('Square Up')
 clock = pygame.time.Clock()
 Font = pygame.font.Font('Assets\PixelatedFont1.ttf', 50)
 FontRestart = pygame.font.Font('Assets\PixelatedFont1.ttf', 45)
 ScoreFont = pygame.font.Font('Assets\PixelatedFont1.ttf', 45)
+fullscreen = 'notsussy'
+groundheight = 200
+groundwidth = 800
+w, h = pygame.display.get_surface().get_size()
+print('e')
 
 StarCollection = 0
 GameActive = True
@@ -145,6 +150,28 @@ while True:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == pygame.FULLSCREEN:
+                pygame.display.toggle_fullscreen
+                w, h = pygame.display.get_surface().get_size()
+                if fullscreen == 'sussy':
+                    fulscreen = 'notsussy'
+                elif fulscreen == 'notsussy':
+                    fulscreen = 'sussy'
+                else:
+                    print('iamneilandmyvariablesmakenosense:)')
+                # Ground
+                if fullscreen == 'sussy':
+                    groundheight = 35/100
+                    groundheight = groundheight * h
+                    groundwidth = 69000
+                    print(w, groundheight, h)
+
+                else:
+                    groundheight = 200
+                    groundwidth = 800
+                Ground = pygame.Surface((groundwidth, groundheight))
+                GroundRect = Ground.get_rect(bottomleft=(0, 700))
+                Ground.fill((60, 35, 20))
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 StartTime = pygame.time.get_ticks()
                 Intro = False
@@ -217,7 +244,7 @@ while True:
         if PlayerRect.y <= -50:
             PlayerRect.y = -50
 
-        if GroundRect.colliderect(PlayerRect) and pygame.time.get_ticks() - JumpRecordTime >= 20:
+        if GroundRect.colliderect(PlayerRect):
             Jump = False
             Player_GravityX = 0
             PlayerRect.y = 450
