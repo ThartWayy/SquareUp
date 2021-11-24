@@ -158,7 +158,7 @@ while True:
                 elif fulscreen == 'notsussy':
                     fulscreen = 'sussy'
                 else:
-                    print('iamneilandmyvariablesmakenosense:)')
+                    print('iamneilandmyvariablesmakenosense2:)')
                 # Ground
                 if fullscreen == 'sussy':
                     groundheight = 35/100
